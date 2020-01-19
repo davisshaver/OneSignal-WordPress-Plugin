@@ -362,10 +362,15 @@ class OneSignal_Public
 
       function documentInitOneSignal() {
         OneSignal.push(function() {
+          var widgetSelector = '.widget_onesignalwidget';
           var buttonSelector = '.OneSignal-prompt';
           var noJsSelector = '.OneSignal-prompt-no-js';
 
           if (!OneSignal.isPushNotificationsSupported()) {
+            var oneSignalWidgets = document.querySelectorAll(widgetSelector);
+            for(var i = 0; i < oneSignalWidgets.length; i++) {
+              oneSignalWidgets[i].style.display = 'none';
+            }
             return;
           }
 
